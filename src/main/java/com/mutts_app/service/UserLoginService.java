@@ -1,6 +1,13 @@
-package com.javasampleapproach.springsecurity.jdbcauthentication.controller;
+package com.mutts_app.service;
 
+import com.mutts_app.repositories.User;
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserLoginService {
+
+
+
     public void saveUser(User user) {
     }
 
