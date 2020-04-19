@@ -56,8 +56,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/login").permitAll()
 				.antMatchers("/registration").permitAll()
-				.antMatchers("/users/**").hasAuthority(("ADMIN"))
-				.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest().authenticated()
+				.antMatchers("/users/**").permitAll()
+				.antMatchers("/admin/**").hasAuthority("ADMIN")
+				.anyRequest().authenticated()
 				.and().csrf().disable().formLogin()
 				.loginPage("/login").failureUrl("/login?error=true")
 				.defaultSuccessUrl("/index")
@@ -76,4 +77,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.ignoring()
 				.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
 	}
+
+
 }

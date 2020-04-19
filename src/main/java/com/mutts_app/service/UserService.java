@@ -1,10 +1,11 @@
 package com.mutts_app.service;
 
-import com.mutts_app.mapper.UserMapper;
 import com.mutts_app.repositories.User;
+import com.mutts_app.repositories.UserChats;
+import com.mutts_app.repositories.UserRepository;
+import com.mutts_app.repositories.mappers.UserChatMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -12,9 +13,26 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    UserMapper userMapper;
+    UserRepository repo;
 
-    public List<User> getAllUsers() {
-        return userMapper.getAllUsers();
+    @Autowired
+    UserChatMapper chatRepo;
+
+
+    public List<User> getAllUsers(){
+        return repo.findAll();
+    }
+
+    public User findUserById(long userId) {
+        return  repo.findByUserId(userId);
+    }
+
+    public List<UserChats> findChatsByUserId(long userId) {
+        List<UserChats> chats = chatRepo.getChatsByUserId(userId);
+        for (UserChats u : chats){
+            u.setPhotoUrl(repo.findByUserId(userId).getPhotoUrl());
+        }
+        return chats;
+
     }
 }

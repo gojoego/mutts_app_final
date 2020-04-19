@@ -52,10 +52,8 @@ public class LoginController {
 //    }
     @RequestMapping(value="/index", method = RequestMethod.GET)
     public String index(Authentication auth, Model model){
-//        Object name = null;
-//        model.addAttribute("user_id", name);
-//        int user_id = userLoginService.findUserByEmail(auth.getName()).getUser_id();
-//        model.addAttribute("user_id", user_id);
+        long user_id = userLoginService.findUserIdByEmail(auth.getName());
+        model.addAttribute("user_id", user_id);
         return "mutts_app";
     }
 }

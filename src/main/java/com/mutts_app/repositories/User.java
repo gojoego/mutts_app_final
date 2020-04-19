@@ -1,61 +1,67 @@
 package com.mutts_app.repositories;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+// @Entity annotation, will look for database that application is connected and will look for database and table
+@Entity
 public class User {
 
-    long user_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    long userId;
 
+    Boolean active;
     String email;
-    String firstname;
-    String lastname;
-    String username;
+    String firstName;
+    String lastName;
     String password;
+    String photoUrl;
+    String userName;
 
     public User() {
     }
 
-    public User(long user_id, String email, String firstname, String lastname, String username, String password) {
-        this.user_id = user_id;
-        this.email = email;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
+    public long getUserId() {
+        return userId;
     }
 
-    public long getUser_id() {
-        return user_id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {
@@ -66,7 +72,19 @@ public class User {
         this.password = password;
     }
 
-    public void getEmail(String email) {
-        this.email = email;
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }

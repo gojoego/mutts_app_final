@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<!-- document type -->
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mutts_app</title>
     <link rel="shortcut icon" href="https://github.com/crowned1/MuttsAppEndofDay3/blob/master/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}">
     <!-- link to style sheet -->
 </head>
 <body>
+<input type="hidden" th:value="${user_id}" id="user_id">
     <header>
         <div id="header-sidebar">
             <div id="self-image" class="img-wrap">
-                <img src="./profile_pic.jpg" alt="hello">
+                <img src="images/profile_pic.jpg" alt="hello">
             </div>
             <!--multiple elements in row: use ordered or unordered list -->
             <div id="header-sidebar-icons">
@@ -207,5 +208,5 @@
             </div>
         </div>
     </div>
-<script src="mutts_app.js"></script>
+<script th:src="@{js/mutts_app.js}"></script>
 </body>
