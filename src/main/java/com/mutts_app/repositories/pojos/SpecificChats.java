@@ -64,4 +64,16 @@ public class SpecificChats {
     public void setChatTitle(String chatTitle) {
         this.chatTitle = chatTitle;
     }
+
+    @Override
+    public String toString() {
+        return "SpecificChats{" +
+                "id='" + id + '\'' +
+                ", message='" + message + '\'' +
+                ", dateSent='" + dateSent + '\'' +
+                ", chatId='" + chatId + '\'' +
+                ", senderId='" + senderId + '\'' +
+                ", chatTitle='" + chatTitle + '\'' +
+                '}';
+    }
 }
