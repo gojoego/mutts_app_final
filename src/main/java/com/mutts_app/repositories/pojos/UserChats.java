@@ -3,8 +3,8 @@ package com.mutts_app.repositories.pojos;
 public class UserChats {
 
     String chatName;
-    String chatId;
-    String senderId;
+    long chatId;
+    long senderId;
     String dateSent;
     String photoUrl;
 
@@ -19,19 +19,19 @@ public class UserChats {
         this.chatName = chatName;
     }
 
-    public String getChatId() {
+    public long getChatId() {
         return chatId;
     }
 
-    public void setChatId(String chatId) {
+    public void setChatId(long chatId) {
         this.chatId = chatId;
     }
 
-    public String getSenderId() {
+    public long getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(String senderId) {
+    public void setSenderId(long senderId) {
         this.senderId = senderId;
     }
 

@@ -1,6 +1,5 @@
 package com.mutts_app;
 
-import com.mutts_app.repositories.pojos.Messages;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

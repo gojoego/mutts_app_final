@@ -30,7 +30,7 @@ public class UserService {
     public List<UserChats> findChatsByUserId(long userId) {
         List<UserChats> chats = chatRepo.getChatsByUserId(userId);
         for (UserChats u : chats){
-            u.setPhotoUrl(repo.findByUserId(userId).getPhotoUrl());
+            u.setPhotoUrl(repo.findByUserId(u.getSenderId()).getPhotoUrl());
         }
         return chats;
 

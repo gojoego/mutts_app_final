@@ -1,10 +1,12 @@
 package com.mutts_app.repositories;
 
-import com.mutts_app.repositories.pojos.Messages;
+import com.mutts_app.repositories.pojos.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MessagesRepository extends JpaRepository<Messages, Long> {
+@Repository
+public interface MessagesRepository extends JpaRepository<Message, Long> {
 
-    public Messages findByMessagesId(long messagesId);
+    public Message findById(long id);
 
 }

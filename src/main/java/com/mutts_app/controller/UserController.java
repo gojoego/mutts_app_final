@@ -2,7 +2,7 @@ package com.mutts_app.controller;
 
 
 import com.mutts_app.model.CustomResponseObject;
-import com.mutts_app.repositories.pojos.Messages;
+import com.mutts_app.repositories.pojos.Message;
 import com.mutts_app.repositories.pojos.User;
 import com.mutts_app.repositories.pojos.UserChats;
 import com.mutts_app.service.MessagesService;
@@ -47,9 +47,9 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/chats/{messagesId}")
-    public CustomResponseObject<List<Messages>> findSpecificChatsByMessageId(@PathVariable("userId") long userId,
-                                                                             @PathVariable("messagesId") long messagesId){
-        CustomResponseObject<List<Messages>> obj = new CustomResponseObject<>();
+    public CustomResponseObject<List<Message>> findSpecificChatsByMessageId(@PathVariable("userId") long userId,
+                                                                            @PathVariable("messagesId") long messagesId){
+        CustomResponseObject<List<Message>> obj = new CustomResponseObject<>();
         obj.setData(messagesService.getAllMessages());
         return obj;
     }
