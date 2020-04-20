@@ -5,23 +5,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-public class SpecificChats {
+public class SpecificChat {
 
-    String id;
+    long id;
     String message;
     String dateSent;
-    String chatId;
-    String senderId;
+    int chatId;
+    int senderId;
     String chatTitle;
 
-    public SpecificChats() {
+    public SpecificChat() {
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -41,19 +41,19 @@ public class SpecificChats {
         this.dateSent = dateSent;
     }
 
-    public String getChatId() {
+    public int getChatId() {
         return chatId;
     }
 
-    public void setChatId(String chatId) {
+    public void setChatId(int chatId) {
         this.chatId = chatId;
     }
 
-    public String getSenderId() {
+    public int getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(String senderId) {
+    public void setSenderId(int senderId) {
         this.senderId = senderId;
     }
 
@@ -64,5 +64,4 @@ public class SpecificChats {
     public void setChatTitle(String chatTitle) {
         this.chatTitle = chatTitle;
     }
-
 }

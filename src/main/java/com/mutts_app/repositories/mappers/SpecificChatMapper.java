@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-public interface SpecificChatsMapper {
+public interface SpecificChatMapper {
 
     String query = "select distinct(c.chatTitle) as chatName, c.id as chatId, " +
             "m.userId as senderId " +
