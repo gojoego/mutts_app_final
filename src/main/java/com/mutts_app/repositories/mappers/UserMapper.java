@@ -1,6 +1,6 @@
 package com.mutts_app.repositories.mappers;
 
-import com.mutts_app.repositories.User;
+import com.mutts_app.repositories.pojos.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

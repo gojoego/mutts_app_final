@@ -1,4 +1,4 @@
-package com.mutts_app.repositories;
+package com.mutts_app.repositories.pojos;
 
 public class UserChats {
 

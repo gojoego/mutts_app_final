@@ -1,4 +1,4 @@
-package com.mutts_app.repositories;
+package com.mutts_app.repositories.pojos;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

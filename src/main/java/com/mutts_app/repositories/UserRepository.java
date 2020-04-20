@@ -1,10 +1,8 @@
 package com.mutts_app.repositories;
 
 
+import com.mutts_app.repositories.pojos.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

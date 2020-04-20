@@ -1,7 +1,7 @@
 package com.mutts_app.service;
 
-import com.mutts_app.repositories.User;
-import com.mutts_app.repositories.UserChats;
+import com.mutts_app.repositories.pojos.User;
+import com.mutts_app.repositories.pojos.UserChats;
 import com.mutts_app.repositories.UserRepository;
 import com.mutts_app.repositories.mappers.UserChatMapper;
 import org.springframework.beans.factory.annotation.Autowired;

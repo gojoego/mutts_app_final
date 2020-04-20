@@ -1,6 +1,6 @@
 package com.mutts_app.repositories.mappers;
 
-import com.mutts_app.repositories.UserChats;
+import com.mutts_app.repositories.pojos.UserChats;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;

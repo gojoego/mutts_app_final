@@ -2,13 +2,12 @@ package com.mutts_app.controller;
 
 
 import com.mutts_app.model.CustomResponseObject;
-import com.mutts_app.repositories.Messages;
-import com.mutts_app.repositories.User;
-import com.mutts_app.repositories.UserChats;
+import com.mutts_app.repositories.pojos.Messages;
+import com.mutts_app.repositories.pojos.User;
+import com.mutts_app.repositories.pojos.UserChats;
 import com.mutts_app.service.MessagesService;
 import com.mutts_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

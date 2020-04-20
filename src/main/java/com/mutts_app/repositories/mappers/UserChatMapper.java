@@ -1,9 +1,8 @@
 package com.mutts_app.repositories.mappers;
 
-import com.mutts_app.repositories.UserChats;
+import com.mutts_app.repositories.pojos.UserChats;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
