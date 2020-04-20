@@ -1,5 +1,6 @@
 package com.mutts_app.service;
 
+import com.mutts_app.repositories.MessageRepository;
 import com.mutts_app.repositories.pojos.User;
 import com.mutts_app.repositories.pojos.UserChats;
 import com.mutts_app.repositories.UserRepository;
@@ -18,6 +19,9 @@ public class UserService {
     @Autowired
     UserChatMapper chatRepo;
 
+    @Autowired
+    MessageRepository messageRepo;
+
 
     public List<User> getAllUsers(){
         return repo.findAll();
@@ -29,10 +33,38 @@ public class UserService {
 
     public List<UserChats> findChatsByUserId(long userId) {
         List<UserChats> chats = chatRepo.getChatsByUserId(userId);
+
         for (UserChats u : chats){
             u.setPhotoUrl(repo.findByUserId(u.getSenderId()).getPhotoUrl());
+            u.setMessage(messageRepo.findFirst1ByChatIdOrderByIdDesc((int) u.getChatId()).getMessage());
+        }
+
+
+        return chats;
+    }
+
+
+
+}
+
+/*
+
+Problem: each user chat was getting the same photo
+
+    public List<UserChats> findChatsByUserId(long userId) {
+        List<UserChats> chats = chatRepo.getChatsByUserId(userId);
+        for (UserChats u : chats){
+            u.setPhotoUrl(repo.findByUserId(userId).getPhotoUrl());
         }
         return chats;
-
     }
-}
+
+Solution: user "u.getSenderId()" instead of "userId"
+
+    -using a for each loop and using the same userId over and over
+        with previous code
+    -using the "u" object assures that each unique picture will be
+        used from the URL in the database
+
+*/
+

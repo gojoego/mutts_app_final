@@ -5,7 +5,7 @@ import com.mutts_app.model.CustomResponseObject;
 import com.mutts_app.repositories.pojos.Message;
 import com.mutts_app.repositories.pojos.User;
 import com.mutts_app.repositories.pojos.UserChats;
-import com.mutts_app.service.MessagesService;
+import com.mutts_app.service.MessageService;
 import com.mutts_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private MessagesService messagesService;
+    private MessageService messagesService;
 
     @GetMapping()
     public CustomResponseObject<List<User>> getAllUsers(){

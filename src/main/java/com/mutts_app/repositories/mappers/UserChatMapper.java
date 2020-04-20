@@ -11,7 +11,7 @@ public interface UserChatMapper {
      String query = "select distinct(c.chatTitle) as chatName, c.id as chatId, " +
             "m.userId as senderId " +
             "from chats c " +
-            "join messages m " +
+            "join message m " +
             "on m.chatId = c.id " +
             "join usersChats uc " +
             "on uc.chatId = c.id " +

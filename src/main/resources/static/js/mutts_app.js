@@ -69,7 +69,8 @@ function createPreviewBox(chat) {
     let p2 = document.createElement('p');
     p2.setAttribute('data-chat_id', chat.chatId);
     p2.setAttribute('data-sender_id', chat.senderId)
-    p2.innerHTML = chat.lastMessage;
+    console.log(chat);
+    p2.innerHTML = chat.message;
     textWrap.appendChild(p1);
     textWrap.appendChild(p2);
     previewBox.appendChild(textWrap);

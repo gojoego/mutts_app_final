@@ -7,6 +7,7 @@ public class UserChats {
     long senderId;
     String dateSent;
     String photoUrl;
+    String message;
 
     public UserChats() {
     }
@@ -49,5 +50,13 @@ public class UserChats {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
