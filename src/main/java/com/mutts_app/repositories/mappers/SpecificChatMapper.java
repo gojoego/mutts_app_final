@@ -1,28 +1,25 @@
 package com.mutts_app.repositories.mappers;
 
-import com.mutts_app.repositories.pojos.UserChats;
+import com.mutts_app.repositories.pojos.Message;
+import com.mutts_app.repositories.pojos.SpecificChat;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import java.util.List;
+import java.util.ArrayList;
 
+@Mapper
 public interface SpecificChatMapper {
 
-    String query = "select distinct(c.chatTitle) as chatName, c.id as chatId, " +
-            "m.userId as senderId " +
-            "from chats c " +
-            "join messages m " +
-            "on m.chatId = c.id " +
-            "join usersChats uc " +
-            "on uc.chatId = c.id " +
-            "where uc.userId = #{userId} " +
-            "and m.userId != #{userId} " +
-            "group by chatId, senderId " +
-            "order by m.dateSent asc";
+    String query = "select c.id, m.message, m.dateSent, m.chatId, m.userId, c.chatTitle " +
+            "from message m " +
+            "join chats c " +
+            "on c.id = m.chatId " +
+            "where m.userId = #{param1} and c.id = #{param2} " +
+            "order by id desc";
 
 
     @Select(query)
-    public List<UserChats> getSpecificChatsById(long userId);
-
+    public ArrayList<SpecificChat> getSpecificChatsById(long userId, long chatId);
 
 }
 

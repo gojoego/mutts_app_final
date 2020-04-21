@@ -2,12 +2,12 @@ package com.mutts_app.repositories.pojos;
 
 public class UserChats {
 
-    String chatName;
-    long chatId;
-    long senderId;
-    String dateSent;
-    String photoUrl;
-    String message;
+    String chatName;    // chats.chatTitle
+    long chatId;        // chats.id
+    long senderId;      // message.userId
+    String dateSent;    // message.dateSent
+    String photoUrl;    // user.photoUrl
+    String message;     // message.message
 
     public UserChats() {
     }

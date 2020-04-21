@@ -7,12 +7,12 @@ import javax.persistence.Id;
 
 public class SpecificChat {
 
-    long id;
-    String message;
-    String dateSent;
-    int chatId;
-    int senderId;
-    String chatTitle;
+    long id;            // chats.id, select c.id from chats
+    String message;     // message.message, m.message from message
+    String dateSent;    // message.dateSent, m.dateSent from message
+    int chatId;         // message.chatId, m.chatId from message
+    int senderId;       // message.userId, m.userId from message
+    String chatTitle;   // chats.chatTitle, c.chatTitle from chats
 
     public SpecificChat() {
     }

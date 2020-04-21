@@ -2,7 +2,9 @@ package com.mutts_app.controller;
 
 
 import com.mutts_app.model.CustomResponseObject;
+import com.mutts_app.repositories.mappers.SpecificChatMapper;
 import com.mutts_app.repositories.pojos.Message;
+import com.mutts_app.repositories.pojos.SpecificChat;
 import com.mutts_app.repositories.pojos.User;
 import com.mutts_app.repositories.pojos.UserChats;
 import com.mutts_app.service.MessageService;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,6 +28,9 @@ public class UserController {
 
     @Autowired
     private MessageService messagesService;
+
+    @Autowired
+    private SpecificChatMapper specificChat;
 
     @GetMapping()
     public CustomResponseObject<List<User>> getAllUsers(){
@@ -46,12 +53,14 @@ public class UserController {
         return obj;
     }
 
-    @GetMapping("/{userId}/chats/{messagesId}")
-    public CustomResponseObject<List<Message>> findSpecificChatsByMessageId(@PathVariable("userId") long userId,
-                                                                            @PathVariable("messagesId") long messagesId){
-        CustomResponseObject<List<Message>> obj = new CustomResponseObject<>();
-        obj.setData(messagesService.getAllMessages());
+    @GetMapping("/{userId}/chats/{otherUserId}")
+    public CustomResponseObject<ArrayList<SpecificChat>> findSpecificChatsById(@PathVariable("userId") long userId,
+                                                                          @PathVariable("otherUserId") long otherUserId){
+        CustomResponseObject<ArrayList<SpecificChat>> obj = new CustomResponseObject<>();
+        obj.setData(specificChat.getSpecificChatsById(userId, otherUserId));
         return obj;
     }
 
 }
+
+
