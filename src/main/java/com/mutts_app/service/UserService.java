@@ -1,6 +1,7 @@
 package com.mutts_app.service;
 
 import com.mutts_app.repositories.MessageRepository;
+import com.mutts_app.repositories.pojos.Message;
 import com.mutts_app.repositories.pojos.User;
 import com.mutts_app.repositories.pojos.UserChats;
 import com.mutts_app.repositories.UserRepository;
@@ -43,6 +44,19 @@ public class UserService {
         return chats;
     }
 
+
+    public Message inputNewMessage(Message msg, int userId){
+        int i = chatRepo.inputNewChat();
+        return (Message) chatRepo.getChatsByUserId(msg.getId());
+
+    }
+
+//    public UserChats createNewMessage(){
+//        int i = chatRepo.createNewChat(chat);
+//        int x = chatRepo.associateChat(id, chat.getId());
+//        int y = chatRepo.associateChat(otherId, chat.getId());
+//        return chat;
+//    }
 
 
 }
