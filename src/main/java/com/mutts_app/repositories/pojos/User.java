@@ -1,9 +1,7 @@
 package com.mutts_app.repositories.pojos;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 // @Entity annotation, will look for database that application is connected and will look for database and table
 @Entity
@@ -20,6 +18,10 @@ public class User {
     String password;
     String photoUrl;
     String userName;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "userRole", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "roleId"))
+    private Set<Role> roles;
 
     public User() {
     }
@@ -86,5 +88,13 @@ public class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

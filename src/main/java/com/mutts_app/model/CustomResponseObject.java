@@ -1,5 +1,8 @@
 package com.mutts_app.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomResponseObject <T> {
 
     T data;
