@@ -1,5 +1,5 @@
 //let userID = +"3";
-let userID = document.getElementById("user_id").value;
+let userID = document.getElementById("userId").value;
 // let baseUrl = 'http://demo.codingnomads.co:8082/muttsapp/users';
 let baseUrl = '/users';
 
@@ -17,6 +17,7 @@ const createChatBubble = (msg) => {
     wrapper.prepend(chatBubble)
 }
 
+// sender Id matches userId give it one style in, if not give it other style out
 
 function createChatBubbles(dataObj) {
     document.getElementById('chat-bubble-wrapper').innerHTML=" ";
@@ -100,7 +101,6 @@ function createPreviewBoxes(dataObj){
 function previewBoxClick(event) {
     document.getElementById('new-message').removeAttribute('disabled');
     document.getElementById("chat-bubble-wrapper").innerHTML = " ";
-    console.log(event.target.dataset)
     let chatID = event.target.dataset.chat_id;
     let senderID = event.target.dataset.sender_id;
     
@@ -115,7 +115,6 @@ function previewBoxClick(event) {
     fetch(baseUrl + "/" + senderID)
         .then(response => response.json())
         .then(dataObj => {
-            console.log(dataObj)
             document.getElementById('recipient').setAttribute('src', dataObj.data.photoUrl);
             document.querySelector('#header-number > p').innerHTML = dataObj.data.firstName + " " + dataObj.data.lastName;
         })
@@ -123,7 +122,6 @@ function previewBoxClick(event) {
 
 let sendMessage = document.getElementById('send-message');
 sendMessage.addEventListener('submit', function(event){
-    console.log(event)
     event.preventDefault();
     let msg = document.getElementById('new-message').value;
     let messageObj = {
