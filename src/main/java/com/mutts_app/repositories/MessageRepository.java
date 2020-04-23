@@ -18,4 +18,6 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
 //    int inputNewMessage(Message msg);
 
 
+
+
 }
