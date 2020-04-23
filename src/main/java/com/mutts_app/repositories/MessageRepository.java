@@ -15,7 +15,7 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
     public Message findFirst1ByChatIdOrderByIdDesc(int chatId);
 
 
-    int inputNewMessage(Message msg);
+//    int inputNewMessage(Message msg);
 
 
 }

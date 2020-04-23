@@ -11,12 +11,12 @@ import java.util.List;
 @Service
 public class SpecificChatService {
 
-    @Autowired
-    SpecificChatMapper specificChat;
-
-    public List<SpecificChat> getSpecificChats(long userId, long chatId){
-        List<SpecificChat> specificChats = specificChat.getSpecificChatsById(userId, chatId);
-        return specificChats;
-    }
+//    @Autowired
+//    SpecificChatMapper specificChat;
+//
+//    public List<SpecificChat> getSpecificChats(long userId, long chatId){
+//        List<SpecificChat> specificChats = specificChat.getMessagesByChatId(chatId);
+//        return specificChats;
+//    }
 
 }

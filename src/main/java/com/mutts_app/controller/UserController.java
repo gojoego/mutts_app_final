@@ -29,9 +29,6 @@ public class UserController {
     @Autowired
     private MessageService messagesService;
 
-    @Autowired
-    private SpecificChatMapper specificChat;
-
     @GetMapping()
     public CustomResponseObject<List<User>> getAllUsers(){
         CustomResponseObject<List<User>> obj = new CustomResponseObject();
@@ -57,7 +54,7 @@ public class UserController {
     public CustomResponseObject<ArrayList<SpecificChat>> findSpecificChatsById(@PathVariable("userId") long userId,
                                                                           @PathVariable("otherUserId") long otherUserId){
         CustomResponseObject<ArrayList<SpecificChat>> obj = new CustomResponseObject<>();
-        obj.setData(specificChat.getSpecificChatsById(userId, otherUserId));
+        obj.setData(messagesService.getSpecificChatsById(userId, otherUserId));
         return obj;
     }
 

@@ -45,11 +45,11 @@ public class UserService {
     }
 
 
-    public Message inputNewMessage(Message msg, int userId){
-        int i = chatRepo.inputNewChat();
-        return (Message) chatRepo.getChatsByUserId(msg.getId());
-
-    }
+//    public Message inputNewMessage(Message msg, int userId){
+//        UserChats i = chatRepo.inputNewChat();
+//        return (Message) chatRepo.getChatsByUserId(msg.getId());
+//
+//    }
 
 //    public UserChats createNewMessage(){
 //        int i = chatRepo.createNewChat(chat);

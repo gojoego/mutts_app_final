@@ -101,13 +101,12 @@ function previewBoxClick(event) {
     document.getElementById('new-message').removeAttribute('disabled');
     document.getElementById("chat-bubble-wrapper").innerHTML = " ";
     console.log(event.target.dataset)
-    let chatID = event.target.dataset.chatId;
-    let senderID = event.target.dataset.senderId;
+    let chatID = event.target.dataset.chat_id;
+    let senderID = event.target.dataset.sender_id;
     
     document.getElementById('send-message').dataset.chatId = chatID;
     fetch(baseUrl + "/" + userID + '/chats/' + senderID)
         .then(responsse => responsse.json())
-        .then(dataObj => createChatBubbles(dataObj))
         .then(dataObj => {
             console.log(dataObj)
             createChatBubbles(dataObj)

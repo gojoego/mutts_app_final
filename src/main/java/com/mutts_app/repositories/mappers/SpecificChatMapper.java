@@ -14,13 +14,22 @@ public interface SpecificChatMapper {
             "from message m " +
             "join chats c " +
             "on c.id = m.chatId " +
-            "where m.userId = #{param1} and c.id = #{param2} " +
+            "where m.chatId = #{chatId} " +
             "order by id desc";
 
+    String GET_CHAT_ID_BY_USER_IDS = "select uc.chatId " +
+            "   from usersChats uc " +
+            "   where uc.userId = #{param1} " +
+            "   or uc.userId = #{param2} " +
+            "   group by uc.chatId " +
+            "   order by count(uc.chatId) desc " +
+            "   limit 1";
 
     @Select(query)
-    public ArrayList<SpecificChat> getSpecificChatsById(long userId, long chatId);
+    public ArrayList<SpecificChat> getMessagesByChatId(long chatId);
 
+    @Select(GET_CHAT_ID_BY_USER_IDS)
+    int getChatIdByUserIds(long userId, long otherUserId);
 }
 
 
