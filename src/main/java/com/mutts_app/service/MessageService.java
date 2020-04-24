@@ -33,4 +33,9 @@ public class MessageService {
         int chatId = chatRepo.getChatIdByUserIds(userId, otherUserId);
         return chatRepo.getMessagesByChatId(chatId);
     }
+
+
+    public ArrayList<SpecificChat> createNewMessageBtwnUsers(long userId, long otherUserId) {
+        int i = chatRepo.
+    }
 }
