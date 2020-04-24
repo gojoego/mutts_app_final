@@ -8,6 +8,11 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.ArrayList;
 
+// mapper interface contains SQL queries
+// @Mapper annotation indicates that it is a mapper
+// @Insert means adding to the appropriate SQL table
+// @Select means pulling from SQL database
+
 @Mapper
 public interface SpecificChatMapper {
 

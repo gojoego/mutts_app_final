@@ -2,12 +2,12 @@ package com.mutts_app.repositories.pojos;
 
 public class UserChats {
 
-    String chatName;    // chats.chatTitle
-    long chatId;        // chats.id
-    long senderId;      // message.userId
-    String dateSent;    // message.dateSent
-    String photoUrl;    // user.photoUrl
-    String message;     // message.message
+    String chatName;    // `whatsapp`.chats.chatTitle
+    long chatId;        // `whatsapp`.chats.id
+    long senderId;      // `whatsapp`.message.userId
+    String dateSent;    // `whatsapp`.message.dateSent
+    String photoUrl;    // `whatsapp`.user.photoUrl
+    String message;     // `whatsapp`.message.message
 
     public UserChats() {
     }

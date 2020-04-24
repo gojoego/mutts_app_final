@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-// service annotated with @Service and uses methods from repository or Mapper
+// service annotated with @Service and uses methods from Repository or Mapper
 
 @Service
 public class MessageService {
