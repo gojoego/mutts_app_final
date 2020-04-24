@@ -3,8 +3,6 @@ package com.mutts_app.controller;
 
 import com.mutts_app.exceptions.NewMessageException;
 import com.mutts_app.model.CustomResponseObject;
-import com.mutts_app.repositories.mappers.SpecificChatMapper;
-import com.mutts_app.repositories.pojos.Message;
 import com.mutts_app.repositories.pojos.SpecificChat;
 import com.mutts_app.repositories.pojos.User;
 import com.mutts_app.repositories.pojos.UserChats;
@@ -13,7 +11,6 @@ import com.mutts_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,11 +54,12 @@ public class UserController {
     }
 
     @PostMapping("/{userId}/chats/{otherUserId}")
-    public CustomResponseObject<ArrayList<SpecificChat>> createNewMessage(@PathVariable("userId") long userId,
-                                                                          @PathVariable("otherUserId") long otherUserId) throws NewMessageException {
-        CustomResponseObject<ArrayList<SpecificChat>> obj = new CustomResponseObject<>();
-        obj.setData(messagesService.insertIntoChatNewMessage(userId,otherUserId));
-        obj.setData(messagesService.insertIntoMessageNewMessage(userId,otherUserId));
+    public CustomResponseObject<List<UserChats>> createNewChat(
+            @PathVariable("userId") int userId,
+            @PathVariable("otherUserId") int otherUserId) throws NewMessageException {
+        CustomResponseObject<List<UserChats>> obj = new CustomResponseObject<>();
+        messagesService.createNewChat(userId,otherUserId);
+        obj.setData(userService.findChatsByUserId(userId));
         return obj;
     }
 

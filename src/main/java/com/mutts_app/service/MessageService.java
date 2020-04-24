@@ -3,9 +3,10 @@ package com.mutts_app.service;
 import com.mutts_app.exceptions.NewMessageException;
 import com.mutts_app.repositories.MessageRepository;
 import com.mutts_app.repositories.mappers.SpecificChatMapper;
+import com.mutts_app.repositories.mappers.UserChatMapper;
+import com.mutts_app.repositories.mappers.UserMapper;
 import com.mutts_app.repositories.pojos.Message;
 import com.mutts_app.repositories.pojos.SpecificChat;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,44 +19,46 @@ import java.util.List;
 public class MessageService {
 
     @Autowired
-    MessageRepository repo;
+    MessageRepository messageRepo;
 
     @Autowired
-    SpecificChatMapper chat;
+    SpecificChatMapper specificChatMapper;
 
     @Autowired
-    SpecificChatMapper chatRepo;
+    UserMapper userMapper;
 
-    public List<Message> getAllMessages(){
+    @Autowired
+    UserChatMapper userChatMapper;
+
+    public List<Message> getAllMessages() {
         return getAllMessages();
     }
 
 
     public ArrayList<SpecificChat> getSpecificChatsById(long userId, long otherUserId) {
-        int chatId = chatRepo.getChatIdByUserIds(userId, otherUserId);
-        return chatRepo.getMessagesByChatId(chatId);
+        int chatId = specificChatMapper.getChatIdByUserIds(userId, otherUserId);
+        return specificChatMapper.getMessagesByChatId(chatId);
     }
 
 
-    public ArrayList<SpecificChat> insertIntoChatNewMessage(long userId, long otherUserId) throws NewMessageException {
-
-        int i = chatRepo.insertIntoChatNewMessage(userId, otherUserId);
-
-        if (i == 1){
-            return chatRepo.getMessagesByChatId(userId);
-        } else {
-            NewMessageException nm = new NewMessageException("message not created");
-            throw nm;
-        }
+    public void createNewChat(int userId, int otherUserId) throws NewMessageException {
+        ArrayList<String> names = userMapper.getUserFirstNames(userId, otherUserId);
+        String title = names.get(0) + " & " + names.get(1);
+        specificChatMapper.createNewChat(title);
+        int chatId = userChatMapper.selectChatIdByChatTitle(title);
+        userChatMapper.updateUserChats(userId, chatId);
+        userChatMapper.updateUserChats(otherUserId, chatId);
     }
 
-    public ArrayList<SpecificChat> insertIntoMessageNewMessage(long userId, long otherUserId) throws NewMessageException {
-        int i = chatRepo.insertIntoMessageNewMessage(userId, otherUserId);
-        if (i == 1){
-            return chatRepo.getMessagesByChatId(userId);
-        } else {
-            NewMessageException nm = new NewMessageException("message not created");
-            throw nm;
-        }
-    }
+//    public ArrayList<SpecificChat> insertIntoMessageNewMessage(long userId, long otherUserId) throws NewMessageException {
+//        int i = specificChatMapper.saveNewMessage(userId, otherUserId);
+//        if (i == 1){
+//            return specificChatMapper.getMessagesByChatId(userId);
+//        } else {
+//            NewMessageException nm = new NewMessageException("message not created");
+//            throw nm;
+//        }
+//    }
+
+    // create POST to save single message, insert into messages table, message, chatID, senderId and other fields in messages table
 }

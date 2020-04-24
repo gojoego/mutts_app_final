@@ -11,6 +11,8 @@ import java.util.ArrayList;
 @Mapper
 public interface UserMapper {
 
+    String GET_USER_FIRST_NAMES = "SELECT firstName FROM whatsapp.user " +
+            "where userId = #{param1} or userId = #{param2}";
 
     String SELECT_ALL_USERS = "select * from `whatsapp`.users";
 
@@ -49,5 +51,8 @@ public interface UserMapper {
 
     @Select(SELECT_BY_ID)
     User findById(int id);
+
+    @Select(GET_USER_FIRST_NAMES)
+    public ArrayList<String> getUserFirstNames(int userId, int otherUserId);
 
 }

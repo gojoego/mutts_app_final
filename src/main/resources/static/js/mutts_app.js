@@ -212,7 +212,7 @@ function newChatSubmit(e){
 
 function makeNewChatForm(e) {
     newChatModalBody.innerHTML = "Loading Chat Form";
-    fetch(`${baseUrl}/users/`)
+    fetch(`${baseUrl}/`)
         .then(res => res.json())
         .then(data => {
             console.log(data);

@@ -2,6 +2,7 @@ package com.mutts_app.repositories.mappers;
 
 import com.mutts_app.repositories.pojos.Message;
 import com.mutts_app.repositories.pojos.SpecificChat;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -25,11 +26,13 @@ public interface SpecificChatMapper {
             "   order by count(uc.chatId) desc " +
             "   limit 1";
 
-    String INSERT_INTO_CHATS_TABLE_FOR_NEW_MESSAGES = "insert into `whatsapp`.message (message, dateSent, chatId, userId) " +
+    String SAVE_NEW_MESSAGE = "insert into `whatsapp`.message (message, dateSent, chatId, userId) " +
             "VALUES (#{message}, #{dateSent}, #{chatId}, #{userId})";
 
-    String INSERT_INTO_MESSAGE_TABLE_FOR_NEW_MESSAGES = "insert into `whatsapp`.chats (id, chatTitle) " +
-            "            VALUES (#{id}, #{chatTitle})";
+    String CREATE_NEW_CHAT = "insert into `whatsapp`.chats (chatTitle) " +
+            "VALUES (#{chatTitle})";
+
+
 
     @Select(GET_MESSAGES_BY_CHAT_ID)
     public ArrayList<SpecificChat> getMessagesByChatId(long chatId);
@@ -37,11 +40,14 @@ public interface SpecificChatMapper {
     @Select(GET_CHAT_ID_BY_USER_IDS)
     int getChatIdByUserIds(long userId, long otherUserId);
 
-    @Select(INSERT_INTO_CHATS_TABLE_FOR_NEW_MESSAGES)
-    int insertIntoChatNewMessage(long userId, long otherUserId);
+    @Select(CREATE_NEW_CHAT)
+    int createNewChat(String chatTitle);
 
-    @Select(INSERT_INTO_MESSAGE_TABLE_FOR_NEW_MESSAGES)
-    int insertIntoMessageNewMessage(long userId, long otherUserId);
+    @Insert(SAVE_NEW_MESSAGE)
+    void saveNewMessage(long userId, long otherUserId);
+
+
+
 }
 
 
