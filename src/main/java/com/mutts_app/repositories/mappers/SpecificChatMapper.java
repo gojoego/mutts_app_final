@@ -25,10 +25,11 @@ public interface SpecificChatMapper {
             "   order by count(uc.chatId) desc " +
             "   limit 1";
 
-    String INSERT_INTO_CHATS_TABLE_FOR_NEW_MESSAGES = "insert into `whatsapp`.message (message, dateSent, chatId, userId as senderId) " +
-            "VALUES (#{message}, #{dateSent}, #{chatId}, #{userId as senderId})";
+    String INSERT_INTO_CHATS_TABLE_FOR_NEW_MESSAGES = "insert into `whatsapp`.message (message, dateSent, chatId, userId) " +
+            "VALUES (#{message}, #{dateSent}, #{chatId}, #{userId})";
 
-    String INSERT_INTO_MESSAGE_TABLE_FOR_NEW_MESSAGES = "";
+    String INSERT_INTO_MESSAGE_TABLE_FOR_NEW_MESSAGES = "insert into `whatsapp`.chats (id, chatTitle) " +
+            "            VALUES (#{id}, #{chatTitle})";
 
     @Select(GET_MESSAGES_BY_CHAT_ID)
     public ArrayList<SpecificChat> getMessagesByChatId(long chatId);

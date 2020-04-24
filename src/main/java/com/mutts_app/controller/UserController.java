@@ -59,7 +59,9 @@ public class UserController {
     public CustomResponseObject<ArrayList<SpecificChat>> createNewMessage(@PathVariable("userId") long userId,
                                                                           @PathVariable("otherUserId") long otherUserId){
         CustomResponseObject<ArrayList<SpecificChat>> obj = new CustomResponseObject<>();
-        obj.setData(messagesService.createNewMessage());
+        obj.setData(messagesService.insertIntoChatNewMessage(userId,otherUserId));
+        obj.setData(messagesService.insertIntoMessageNewMessage(userId,otherUserId));
+        return obj;
     }
 
 }
