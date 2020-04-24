@@ -40,7 +40,6 @@ public class UserService {
             u.setMessage(messageRepo.findFirst1ByChatIdOrderByIdDesc((int) u.getChatId()).getMessage());
         }
 
-
         return chats;
     }
 

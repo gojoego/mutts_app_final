@@ -1,6 +1,7 @@
 package com.mutts_app.controller;
 
 
+import com.mutts_app.exceptions.NewMessageException;
 import com.mutts_app.model.CustomResponseObject;
 import com.mutts_app.repositories.mappers.SpecificChatMapper;
 import com.mutts_app.repositories.pojos.Message;
@@ -57,7 +58,7 @@ public class UserController {
 
     @PostMapping("/{userId}/chats/{otherUserId}")
     public CustomResponseObject<ArrayList<SpecificChat>> createNewMessage(@PathVariable("userId") long userId,
-                                                                          @PathVariable("otherUserId") long otherUserId){
+                                                                          @PathVariable("otherUserId") long otherUserId) throws NewMessageException {
         CustomResponseObject<ArrayList<SpecificChat>> obj = new CustomResponseObject<>();
         obj.setData(messagesService.insertIntoChatNewMessage(userId,otherUserId));
         obj.setData(messagesService.insertIntoMessageNewMessage(userId,otherUserId));
