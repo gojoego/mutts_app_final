@@ -62,8 +62,4 @@ public class LoginController {
         return "mutts_app";
     }
 
-//    @RequestMapping(value="/registration", method = RequestMethod.GET)
-//    public String reg(){
-//        return null;
-//    }
 }

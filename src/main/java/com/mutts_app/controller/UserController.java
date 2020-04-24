@@ -58,10 +58,14 @@ public class UserController {
             @PathVariable("userId") int userId,
             @PathVariable("otherUserId") int otherUserId) throws NewMessageException {
         CustomResponseObject<List<UserChats>> obj = new CustomResponseObject<>();
+        // creating new chat with the two users
         messagesService.createNewChat(userId,otherUserId);
+        // using response object
+        // finding all chats by user and return the object as confirmation it was created
         obj.setData(userService.findChatsByUserId(userId));
         return obj;
     }
+
 
 }
 

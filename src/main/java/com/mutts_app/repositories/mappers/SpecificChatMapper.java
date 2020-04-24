@@ -32,8 +32,6 @@ public interface SpecificChatMapper {
     String CREATE_NEW_CHAT = "insert into `whatsapp`.chats (chatTitle) " +
             "VALUES (#{chatTitle})";
 
-
-
     @Select(GET_MESSAGES_BY_CHAT_ID)
     public ArrayList<SpecificChat> getMessagesByChatId(long chatId);
 

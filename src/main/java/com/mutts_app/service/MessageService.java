@@ -40,16 +40,21 @@ public class MessageService {
         return specificChatMapper.getMessagesByChatId(chatId);
     }
 
-
     public void createNewChat(int userId, int otherUserId) throws NewMessageException {
+        // creating list of strings of the first names of the 2 users involved in this new chat
         ArrayList<String> names = userMapper.getUserFirstNames(userId, otherUserId);
+        // this becomes the new chatTitle in the `chats` table
         String title = names.get(0) + " & " + names.get(1);
+        // inserts this new chatTitle into the `chats` table thereby creating the new row
+        // the chatId is automatically created because of the auto increment
         specificChatMapper.createNewChat(title);
+        // determine chatId using the title
         int chatId = userChatMapper.selectChatIdByChatTitle(title);
+        // associate chatIds with both users
         userChatMapper.updateUserChats(userId, chatId);
         userChatMapper.updateUserChats(otherUserId, chatId);
     }
-
+// create POST to save single message, insert into messages table, message, chatID, senderId and other fields in messages table
 //    public ArrayList<SpecificChat> insertIntoMessageNewMessage(long userId, long otherUserId) throws NewMessageException {
 //        int i = specificChatMapper.saveNewMessage(userId, otherUserId);
 //        if (i == 1){
@@ -60,5 +65,5 @@ public class MessageService {
 //        }
 //    }
 
-    // create POST to save single message, insert into messages table, message, chatID, senderId and other fields in messages table
+
 }

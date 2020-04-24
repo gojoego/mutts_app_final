@@ -156,98 +156,49 @@ function sendNewMessage(msgObj) {
         });
 }
 
-let newChatBtn = document.getElementById('new-chat-btn');
-let newChatModalBody = document.getElementById('new-chat-modal-body');
-newChatBtn.addEventListener('click', makeNewChatForm);
+// let newChatBtn = document.getElementById('new-chat-btn');
+// let newChatModalBody = document.getElementById('new-chat-modal-body');
+// newChatBtn.addEventListener('click', makeNewChatForm);
 
-function makeNewChatForm(){
-    fetch(`${baseUrl}/users/`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            let usersArray = data.data;
+// function makeNewChatForm(e) {
+//     newChatModalBody.innerHTML = "Loading Chat Form";
+//     fetch(`${baseUrl}`)
+//         .then(res => res.json())
+//         .then(data => {
+//             console.log(data);
+//             let usersArray = data.data;
 
-            let form = document.createElement('form');
-            form.id = 'new-chat-form';
+//             let frm = document.createElement('form');
+//             frm.id = `new-chat-frm`;
 
-            let formString = ``;
-            formString +=  '<select name="user">'
-            usersArray.forEach(userObj => {
-                formString += `<option value="${userObj.id}">${userObj.first_name} ${userObj.last_name}</option> `
-            })
+//             let formString = ``;
+//             formString += `<input id="new-chat-user" type="text" list="users-list" class="form-control">`;
+//             formString += `<datalist id="users-list">`
+//             usersArray.forEach(userObj => {
+//                 formString += `<option data-value="${userObj.id}" value="${userObj.first_name} ${userObj.last_name}"></option> `
+//             })
 
-            formString += `</select>`
-            formString += `<input type="submit" class="btn btn-success">`
-            form.innerHTML = formString;
-            form.addEventListener('submit', newChatSubmit)
-            newChatModalBody.innerHTML = "";
-            newChatModalBody.appendChild(form);
-        })
-}
-
-function newChatSubmit(e){
-    e.preventDefault();
-
-    let newChatUser = document.querySelector('select[name="user"]');
-    let newChatUserId = newChatUser.value;
-    let newChatUserName = newChatUser.querySelector('option:checked').innerHTML;
-
-    console.log({ chat_title: newChatUserName })
-    let postParams = {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            "Access-Control-Allow-Headers": "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With",
-            "Access-Control-Allow-Origin": "*"
-        },
-        body: JSON.stringify({chat_title: newChatUserName})
-    }
-    fetch(`${baseUrl}/users/` + userID+ "/chats/" + newChatUserId , postParams)
-    .then(res => res.json())
-    .then(res => {
-        console.log(res)
-        createPreviewBox(res.data, false)
-    })
-}
-
-function makeNewChatForm(e) {
-    newChatModalBody.innerHTML = "Loading Chat Form";
-    fetch(`${baseUrl}/`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            let usersArray = data.data;
-            let frm = document.createElement('form');
-            frm.id = `new-chat-frm`;
-            let formString = ``;
-            formString += `<input id="new-chat-user" type="text" list="users-list" class="form-control">`;
-            formString += `<datalist id="users-list">`
-            usersArray.forEach(userObj => {
-                formString += `<option data-value="${userObj.id}" value="${userObj.first_name} ${userObj.last_name}"></option> `
-            })
-            formString += `</datalist>`
-            formString += `<input type="submit" class="btn btn-success">`
-            frm.innerHTML = formString;
-            frm.addEventListener('submit', newChatSubmit)
-            newChatModalBody.innerHTML = "";
-            newChatModalBody.appendChild(frm);
-        })
-}
-function newChatSubmit(e){
-    e.preventDefault()
-    let options = document.getElementById('users-list').options;
-    console.log(document.getElementById('users-list').options)
-    console.log(e.target.elements)
-    let val = e.target.elements["new-chat-user"].value
-    console.log(val)
-    let newChatUserId;
-    Array.from(options).forEach(option => {
-        if (option.value === val) {
-            newChatUserId = option.getAttribute('data-value');
-        }
-    })
-    console.log(newChatUserId) 
-    // Write submit fetch here
-}
-
-
+//             formString += `</datalist>`
+//             formString += `<input type="submit" class="btn btn-success">`
+//             frm.innerHTML = formString;
+//             frm.addEventListener('submit', newChatSubmit)
+//             newChatModalBody.innerHTML = "";
+//             newChatModalBody.appendChild(frm);
+//         })
+// }
+// function newChatSubmit(e){
+//     e.preventDefault()
+//     let options = document.getElementById('users-list').options;
+//     console.log(document.getElementById('users-list').options)
+//     console.log(e.target.elements)
+//     let val = e.target.elements["new-chat-user"].value
+//     console.log(val)
+//     let newChatUserId;
+//     Array.from(options).forEach(option => {
+//         if (option.value === val) {
+//             newChatUserId = option.getAttribute('data-value');
+//         }
+//     })
+//     console.log(newChatUserId) 
+//     // Write submit fetch here
+// }
