@@ -128,9 +128,8 @@ sendMessage.addEventListener('submit', function(event){
     let msg = document.getElementById('new-message').value;
     let messageObj = {
         message:msg,
-        senderID:userID,
-        chatID:+event.target.dataset.chatId,
-        otherUserID:+event.target.dataset.senderId,
+        userId:userID,
+        chatId:+event.target.dataset.chatId
     } 
     createChatBubble(messageObj);
     sendNewMessage(messageObj);
@@ -148,7 +147,8 @@ function sendNewMessage(msgObj) {
         },
        body: JSON.stringify(msgObj)
     };
-    fetch(`${baseUrl}/${userID}/chats/${otherUserID}`, postParams)
+    console.log(`${baseUrl}/${userID}/message`, postParams)
+    fetch(`${baseUrl}/${userID}/message`, postParams)
         .then(res => res.json())
         .then(res => {
             console.log(res)
@@ -156,49 +156,131 @@ function sendNewMessage(msgObj) {
         });
 }
 
-// let newChatBtn = document.getElementById('new-chat-btn');
-// let newChatModalBody = document.getElementById('new-chat-modal-body');
-// newChatBtn.addEventListener('click', makeNewChatForm);
+let newChatBtn = document.getElementById('new-chat-btn');
+let newChatModalBody = document.getElementById('new-chat-modal-body');
+newChatBtn.addEventListener('click', makeNewChatForm);
 
-// function makeNewChatForm(e) {
-//     newChatModalBody.innerHTML = "Loading Chat Form";
-//     fetch(`${baseUrl}`)
+
+function makeNewChatForm(e) {
+    newChatModalBody.innerHTML = "Loading Chat Form";
+    fetch(`${baseUrl}/users/`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            let usersArray = data.data;
+            let frm = document.createElement('form');
+            frm.id = `new-chat-frm`;
+            let formString = ``;
+            formString += `<input id="new-chat-user" type="text" list="users-list" class="form-control">`;
+            formString += `<datalist id="users-list">`
+            usersArray.forEach(userObj => {
+                formString += `<option data-value="${userObj.id}" value="${userObj.first_name} ${userObj.last_name}"></option> `
+            })
+            formString += `</datalist>`
+            formString += `<input type="submit" class="btn btn-success">`
+            frm.innerHTML = formString;
+            frm.addEventListener('submit', newChatSubmit)
+            newChatModalBody.innerHTML = "";
+            newChatModalBody.appendChild(frm);
+        })
+}
+function newChatSubmit(e){
+    e.preventDefault()
+    let options = document.getElementById('users-list').options;
+    console.log(document.getElementById('users-list').options)
+    console.log(e.target.elements)
+    let val = e.target.elements["new-chat-user"].value
+    console.log(val)
+    let newChatUserId;
+    Array.from(options).forEach(option => {
+        if (option.value === val) {
+            newChatUserId = option.getAttribute('data-value');
+        }
+    })
+    console.log(newChatUserId)
+    
+    fetch(baseUrl + "/" + senderID)
+    .then(response => response.json())
+    
+   
+    // Write submit fetch here
+}
+
+// function newUser() {
+//     let postData = {
+//         first_name: "",
+//         last_name: "",
+//         username: "",
+//         photo_url: ""
+//     }
+//     let postParams = {
+//        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+//        headers: {
+//            "Content-Type": "application/json; charset=UTF-8"
+//        },
+//        body: JSON.stringify(postData)
+//     }
+//     fetch('http://demo.codingnomads.co:8080/muttsapp/users/', postParams)
 //         .then(res => res.json())
-//         .then(data => {
-//             console.log(data);
-//             let usersArray = data.data;
+//         .then(res => console.log(res))
+// };
 
-//             let frm = document.createElement('form');
-//             frm.id = `new-chat-frm`;
-
-//             let formString = ``;
-//             formString += `<input id="new-chat-user" type="text" list="users-list" class="form-control">`;
-//             formString += `<datalist id="users-list">`
-//             usersArray.forEach(userObj => {
-//                 formString += `<option data-value="${userObj.id}" value="${userObj.first_name} ${userObj.last_name}"></option> `
-//             })
-
-//             formString += `</datalist>`
-//             formString += `<input type="submit" class="btn btn-success">`
-//             frm.innerHTML = formString;
-//             frm.addEventListener('submit', newChatSubmit)
-//             newChatModalBody.innerHTML = "";
-//             newChatModalBody.appendChild(frm);
+// (function getUsers(){
+//     fetch('http://demo.codingnomads.co:8080/muttsapp/users/')
+//         .then(response => { 
+//             return response.json()
 //         })
-// }
-// function newChatSubmit(e){
-//     e.preventDefault()
-//     let options = document.getElementById('users-list').options;
-//     console.log(document.getElementById('users-list').options)
-//     console.log(e.target.elements)
-//     let val = e.target.elements["new-chat-user"].value
-//     console.log(val)
-//     let newChatUserId;
-//     Array.from(options).forEach(option => {
-//         if (option.value === val) {
-//             newChatUserId = option.getAttribute('data-value');
-//         }
-//     })
-//     console.log(newChatUserId) 
-//     // Write submit fetch here
-// }
+//         .then( dataObj => {
+//             console.log(dataObj)
+//             let chatsArr = dataObj.data;
+//             chatsArr.forEach( (chat) => {
+//                 createPreviewBox(chat)
+//             })
+//         })
+//     })();
+
+
+// let chats = [
+//   {
+//     sender_id: "1",
+//     photo_url: "./images/icons8-bullbasaur-50.png",
+//     last_message: "hi",
+//     chat_name: "Bullbasaur",
+//     date_sent: "3/19/20"
+//   },
+//   {
+//     sender_id: "2",
+//     photo_url: "./images/icons8-pikachu-pokemon-50.png",
+//     last_message: "hello",
+//     chat_name: "pikachu",
+//     date_sent: "3/19/20"
+//   },
+//   {
+//     sender_id: "3",
+//     photo_url: "./images/icons8-charmander-50.png",
+//     last_message: "How it's going?",
+//     chat_name: "Charmander",
+//     date_sent: "3/20/20"
+//   },
+//   {
+//     sender_id: "4",
+//     photo_url: "./images/icons8-eevee-50.png",
+//     last_message: "Hey girl!",
+//     chat_name: "Eevee",
+//     date_sent: "3/21/20"
+//   },
+//   {
+//     sender_id: "5",
+//     photo_url: "./images/icons8-jigglypuff-50.png",
+//     last_message: "Wanna hangout?",
+//     chat_name: "Jiggly Puff",
+//     date_sent: "3/22/20"
+//   },
+//   {
+//     sender_id: "6",
+//     photo_url: "./images/icons8-dratini-50.png",
+//     last_message: "See ya later!",
+//     chat_name: "Dratini",
+//     date_sent: "3/23/20"
+//   }
+// ];

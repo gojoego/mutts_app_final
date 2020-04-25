@@ -31,8 +31,8 @@ public interface SpecificChatMapper {
             "   order by count(uc.chatId) desc " +
             "   limit 1";
 
-    String SAVE_NEW_MESSAGE = "insert into `whatsapp`.message (message, dateSent, chatId, userId) " +
-            "VALUES (#{message}, #{dateSent}, #{chatId}, #{userId})";
+    String SAVE_NEW_MESSAGE = "insert into `whatsapp`.message (message, chatId, userId) " +
+            "VALUES (#{message}, #{chatId}, #{userId})";
 
     String CREATE_NEW_CHAT = "insert into `whatsapp`.chats (chatTitle) " +
             "VALUES (#{chatTitle})";
@@ -43,11 +43,13 @@ public interface SpecificChatMapper {
     @Select(GET_CHAT_ID_BY_USER_IDS)
     int getChatIdByUserIds(long userId, long otherUserId);
 
-    @Select(CREATE_NEW_CHAT)
+    @Insert(SAVE_NEW_MESSAGE)
+    void saveNewMessage(Message msg);
+
+    @Insert(CREATE_NEW_CHAT)
     int createNewChat(String chatTitle);
 
-    @Insert(SAVE_NEW_MESSAGE)
-    void saveNewMessage(long userId, long otherUserId);
+
 
 
 

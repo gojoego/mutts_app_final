@@ -22,7 +22,8 @@ public interface UserChatMapper {
             "group by chatId, senderId " +
             "order by m.dateSent asc";
 
-     String INPUT_CHAT = "insert into message message, chatID, userId";
+     String INSERT_NEW_MESSAGE = "insert into `whatsapp`messages (message, chatId, userId) " +
+             "VALUES (#{message}, #{chatId}, #{userId})";
 
      String SELECT_CHAT_ID_BY_CHAT_TITLE = "select chatId from chats where chatTitle = #{chatTitle}";
 
@@ -33,8 +34,8 @@ public interface UserChatMapper {
     public List<UserChats> getChatsByUserId(long userId);
 
 
-    @Select(INPUT_CHAT)
-    public UserChats inputNewChat(Message message);
+    @Insert(INSERT_NEW_MESSAGE)
+    public void insertNewMessage(Message message);
 
     @Select(SELECT_CHAT_ID_BY_CHAT_TITLE)
     public int selectChatIdByChatTitle(String chatTitle);

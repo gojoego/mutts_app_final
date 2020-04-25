@@ -54,6 +54,12 @@ public class MessageService {
         userChatMapper.updateUserChats(userId, chatId);
         userChatMapper.updateUserChats(otherUserId, chatId);
     }
+
+    public void saveNewMessage(Message msg) throws NewMessageException{
+        specificChatMapper.saveNewMessage(msg);
+    }
+
+
 // create POST to save single message, insert into messages table, message, chatID, senderId and other fields in messages table
 //    public ArrayList<SpecificChat> insertIntoMessageNewMessage(long userId, long otherUserId) throws NewMessageException {
 //        int i = specificChatMapper.saveNewMessage(userId, otherUserId);
