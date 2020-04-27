@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>mutts_app</title>
     <link rel="shortcut icon" href="https://github.com/crowned1/MuttsAppEndofDay3/blob/master/favicon.ico" type="image/x-icon">
-    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{css/styles.css}">
     <!-- link to style sheet -->
@@ -19,14 +18,12 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div id="new-chat-modal-body" class="modal-body">
-          ...Loading
-        </div>
+        </div id="new-chat-body" class="modal-body">
+        <form id="new-chat-frm">
+            <input id="new-chat-user" type="text" list="users-list" class="form-control">
+            <datalist id="users-lists"> </datalist>
+            <input type="submit" class="btn btn-success">
+        </form>
       </div>
     </div>
   </div>

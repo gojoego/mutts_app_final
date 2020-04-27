@@ -207,6 +207,7 @@ function newChatSubmit(e){
     .then(response => response.json())
     
    
+    
     // Write submit fetch here
 }
 
