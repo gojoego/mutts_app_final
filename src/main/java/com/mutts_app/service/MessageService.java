@@ -30,8 +30,8 @@ public class MessageService {
     @Autowired
     UserChatMapper userChatMapper;
 
-    public List<Message> getAllMessages() {
-        return getAllMessages();
+    public List<Message> findMessagesByUserId(int userId) {
+        return messageRepo.findMessagesByUserId(userId);
     }
 
 

@@ -77,6 +77,15 @@ public class UserController {
         return obj;
     }
 
+    @GetMapping("/{userId}/message")
+    public CustomResponseObject<List<UserChats>> findAllMessages(
+            @PathVariable("userId") int userId){
+        CustomResponseObject<List<UserChats>> obj = new CustomResponseObject<>();
+        messagesService.findMessagesByUserId(userId);
+        obj.setData(userService.findChatsByUserId(userId));
+        return obj;
+    }
+
     // Post Request from mutts_app
     // controller receives request
     // hits the PostMapping endpoint for messages between 2 users
