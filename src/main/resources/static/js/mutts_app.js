@@ -38,7 +38,7 @@ function getUserChats() {
 
 getUserChats();
 
-function createPreviewBox(chat) {
+function createPreviewBox(chat, append=true) {
     console.log(chat);
     let previewBox = document.createElement('div');
     previewBox.classList.add('message-preview-box');
@@ -91,7 +91,12 @@ function createPreviewBox(chat) {
     previewBox.appendChild(dateWrap);
 
     let messageWrap = document.getElementById("message-wrapper")
-    messageWrap.appendChild(previewBox);
+    if(append){
+        messageWrap.appendChild(previewBox);
+    } else {
+        messageWrap.prepend(previewBox)
+    } 
+    
  }
 
 function createPreviewBoxes(dataObj){
@@ -160,10 +165,9 @@ let newChatBtn = document.getElementById('new-chat-btn');
 let newChatModalBody = document.getElementById('new-chat-modal-body');
 newChatBtn.addEventListener('click', makeNewChatForm);
 
-
 function makeNewChatForm(e) {
     newChatModalBody.innerHTML = "Loading Chat Form";
-    fetch(`${baseUrl}/users/`)
+    fetch(`${baseUrl}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -174,7 +178,7 @@ function makeNewChatForm(e) {
             formString += `<input id="new-chat-user" type="text" list="users-list" class="form-control">`;
             formString += `<datalist id="users-list">`
             usersArray.forEach(userObj => {
-                formString += `<option data-value="${userObj.id}" value="${userObj.first_name} ${userObj.last_name}"></option> `
+                formString += `<option data-value="${userObj.userId}" value="${userObj.firstName} ${userObj.lastName}"></option> `
             })
             formString += `</datalist>`
             formString += `<input type="submit" class="btn btn-success">`
@@ -199,7 +203,7 @@ function newChatSubmit(e){
     })
     console.log(newChatUserId)
     
-    fetch(baseUrl + "/" + senderID)
+    fetch(`${baseUrl} + "/" + senderID`)
     .then(response => response.json())
     
    
