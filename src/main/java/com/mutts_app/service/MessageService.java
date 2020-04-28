@@ -40,6 +40,10 @@ public class MessageService {
         return specificChatMapper.getMessagesByChatId(chatId);
     }
 
+    public ArrayList<SpecificChat> getMessagesByChatId(int chatId) {
+        return specificChatMapper.getMessagesByChatId(chatId);
+    }
+
     public void createNewChat(int userId, int otherUserId) throws NewMessageException {
         // creating list of strings of the first names of the 2 users involved in this new chat
         ArrayList<String> names = userMapper.getUserFirstNames(userId, otherUserId);

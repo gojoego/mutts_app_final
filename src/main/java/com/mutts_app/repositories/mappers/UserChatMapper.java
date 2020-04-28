@@ -10,19 +10,18 @@ import java.util.List;
 
 @Mapper
 public interface UserChatMapper {
-     String USER_CHATS_BY_ID = "select distinct(c.chatTitle) as chatName, c.id as chatId, " +
-            "m.userId as senderId " +
-            "from chats c " +
-            "join message m " +
-            "on m.chatId = c.id " +
-            "join usersChats uc " +
-            "on uc.chatId = c.id " +
-            "where uc.userId = #{userId} " +
-            "and m.userId != #{userId} " +
-            "group by chatId, senderId " +
-            "order by m.dateSent asc";
+     String USER_CHATS_BY_ID = "select distinct(c.chatTitle) as chatName, c.id as chatId, max(m.dateSent) as dateSent, " +
+             "m.userId as senderId " +
+             "from chats c " +
+             "join message m " +
+             "on m.chatId = c.id " +
+             "join usersChats uc " +
+             "on uc.chatId = c.id " +
+             "where uc.userId = #{userId} " +
+             "group by chatId " +
+             "order by dateSent desc";
 
-     String INSERT_NEW_MESSAGE = "insert into `whatsapp`messages (message, chatId, userId) " +
+     String INSERT_NEW_MESSAGE = "insert into `whatsapp`message (message, chatId, userId) " +
              "VALUES (#{message}, #{chatId}, #{userId})";
 
      String SELECT_CHAT_ID_BY_CHAT_TITLE = "select chatId from chats where chatTitle = #{chatTitle}";

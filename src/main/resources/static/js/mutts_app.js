@@ -5,8 +5,8 @@ let baseUrl = '/users';
 
 const createChatBubble = (msg) => {
     let chatBubble = document.createElement('div');
-    console.log(msg.senderId);
-    console.log(userID);
+    // console.log(msg.senderId);
+    // console.log(userID);
     if(msg.senderId === +userID){
         chatBubble.classList.add("chat-bubble", "out")
     } else {
@@ -112,6 +112,7 @@ function previewBoxClick(event) {
     let senderID = event.target.dataset.sender_id;
     
     document.getElementById('send-message').dataset.chatId = chatID;
+    console.log(baseUrl + "/" + userID + '/chats/' + senderID)
     fetch(baseUrl + "/" + userID + '/chats/' + senderID)
         .then(responsse => responsse.json())
         .then(dataObj => {
@@ -207,7 +208,7 @@ function newChatSubmit(e){
     .then(response => response.json())
     
    
-    
+
     // Write submit fetch here
 }
 
