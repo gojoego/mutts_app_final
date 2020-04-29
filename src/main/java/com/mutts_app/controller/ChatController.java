@@ -34,6 +34,7 @@ public class ChatController {
     // in order to create an end point, you need to have a mapping
     // controllers receives HTTP requests
     // this is a new way of getting chats to appear in the mutts_app window
+    // update javascript code to reflect new endpoint
 
 
 }
