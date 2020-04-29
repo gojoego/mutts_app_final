@@ -24,3 +24,5 @@ public class CustomResponseObject <T> {
         this.error = error;
     }
 }
+
+// utilize Custome Response Object to standardize responses
