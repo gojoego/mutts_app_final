@@ -25,4 +25,4 @@ public class CustomResponseObject <T> {
     }
 }
 
-// utilize Custome Response Object to standardize responses
+// utilize Customer Response Object to standardize responses

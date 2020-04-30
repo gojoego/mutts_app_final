@@ -113,6 +113,7 @@ function previewBoxClick(event) {
     
     document.getElementById('send-message').dataset.chatId = chatID;
     console.log(baseUrl + "/" + userID + '/chats/' + senderID)
+    // fetch("chats/" + chatID)
     fetch(baseUrl + "/" + userID + '/chats/' + senderID)
         .then(responsse => responsse.json())
         .then(dataObj => {
