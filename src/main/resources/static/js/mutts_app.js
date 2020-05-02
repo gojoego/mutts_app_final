@@ -1,5 +1,5 @@
 //let userID = +"3";
-let userID = document.getElementById("user_id").value;
+let userID = +document.getElementById("user_id").value;
 // let baseUrl = 'http://demo.codingnomads.co:8082/muttsapp/users';
 let baseUrl = '/users';
 
@@ -113,8 +113,8 @@ function previewBoxClick(event) {
     
     document.getElementById('send-message').dataset.chatId = chatID;
     console.log(baseUrl + "/" + userID + '/chats/' + senderID)
-    // fetch("chats/" + chatID)
-    fetch(baseUrl + "/" + userID + '/chats/' + senderID)
+    fetch("chats/" + chatID)
+    // fetch(baseUrl + "/" + userID + '/chats/' + senderID)
         .then(responsse => responsse.json())
         .then(dataObj => {
             console.log(dataObj)
@@ -136,7 +136,8 @@ sendMessage.addEventListener('submit', function(event){
     let messageObj = {
         message:msg,
         userId:userID,
-        chatId:+event.target.dataset.chatId
+        chatId:+event.target.dataset.chatId,
+        senderId:+userID
     } 
     createChatBubble(messageObj);
     sendNewMessage(messageObj);

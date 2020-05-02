@@ -340,10 +340,12 @@ space among items in container when size unknown and/or dynamic
 #new-message{
     border-radius: 25%;
     height: 80%;
+    width: 700px;
+    height: 45px;
 }
 
 input[name="message"]{
-    width: %;
+    /* width: %; */
     line-height: 10px;
     border: none;
     border-radius: 20px;

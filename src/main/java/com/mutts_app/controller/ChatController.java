@@ -1,22 +1,23 @@
 package com.mutts_app.controller;
 
-//create a new api endpoint:
-//        /chats/1
-//        this will return the same thing that the:
-//        /users/3/chats/4
-//        currently does
-//        the chat detail
-//        but it only requires the chatId
-//        so you won’t need to look up the chatId in the “getUserChats” service method
-
-import com.mutts_app.model.CustomResponseObject;
+import com.mutts_app.response.CustomResponseObject;
 import com.mutts_app.repositories.pojos.SpecificChat;
 import com.mutts_app.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
+/*
+
+new endpoint: /chats/{userId}
+will return same results as /users/{userId}/chats/{senderId}
+but will only require the chatId
+no need to look up chatId in "getUserChats" service method
+
+*/
 
 @RestController
 @RequestMapping("/chats")
@@ -26,7 +27,7 @@ public class ChatController {
     private MessageService messagesService;
 
     @RequestMapping("/{chatId}")
-    public CustomResponseObject<List<SpecificChat>> findChatsByChatId (int chatId){
+    public CustomResponseObject<List<SpecificChat>> findChatsByChatId (@PathVariable int chatId){
         CustomResponseObject<List<SpecificChat>> obj = new CustomResponseObject<>();
         obj.setData(messagesService.getMessagesByChatId(chatId));
         return obj;

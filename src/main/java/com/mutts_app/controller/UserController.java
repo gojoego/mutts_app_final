@@ -2,7 +2,7 @@ package com.mutts_app.controller;
 
 
 import com.mutts_app.exceptions.NewMessageException;
-import com.mutts_app.model.CustomResponseObject;
+import com.mutts_app.response.CustomResponseObject;
 import com.mutts_app.repositories.pojos.Message;
 import com.mutts_app.repositories.pojos.SpecificChat;
 import com.mutts_app.repositories.pojos.User;

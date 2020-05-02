@@ -1,4 +1,4 @@
-package com.mutts_app.model;
+package com.mutts_app.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
