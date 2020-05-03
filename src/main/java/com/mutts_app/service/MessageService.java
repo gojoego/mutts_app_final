@@ -1,12 +1,15 @@
 package com.mutts_app.service;
 
 import com.mutts_app.exceptions.NewMessageException;
+import com.mutts_app.pojos.User;
 import com.mutts_app.repositories.MessageRepository;
+import com.mutts_app.repositories.UserRepository;
 import com.mutts_app.repositories.mappers.SpecificChatMapper;
 import com.mutts_app.repositories.mappers.UserChatMapper;
 import com.mutts_app.repositories.mappers.UserMapper;
-import com.mutts_app.repositories.pojos.Message;
-import com.mutts_app.repositories.pojos.SpecificChat;
+import com.mutts_app.pojos.Message;
+import com.mutts_app.pojos.SpecificChat;
+import com.mutts_app.response.SpecificChatResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,18 +33,34 @@ public class MessageService {
     @Autowired
     UserChatMapper userChatMapper;
 
-    public List<Message> findMessagesByUserId(int userId) {
-        return messageRepo.findMessagesByUserId(userId);
-    }
+    @Autowired
+    UserRepository repo;
 
+    public List<Message> findMessagesByUserId(int userId) {
+//        return messageRepo.findMessagesByUserId(userId);
+        List<Message> messages = messageRepo.findMessagesByUserId(userId);
+
+        for (Message m: messages){
+            m.setMessage(messageRepo.findById(userId).getMessage());
+
+        }
+        return messages;
+    }
 
     public ArrayList<SpecificChat> getSpecificChatsById(long userId, long otherUserId) {
         int chatId = specificChatMapper.getChatIdByUserIds(userId, otherUserId);
         return specificChatMapper.getMessagesByChatId(chatId);
     }
 
-    public ArrayList<SpecificChat> getMessagesByChatId(int chatId) {
-        return specificChatMapper.getMessagesByChatId(chatId);
+    public SpecificChatResponse getMessagesByChatId(int chatId, long userId) {
+        SpecificChatResponse obj = new SpecificChatResponse();
+        obj.setMessages(specificChatMapper.getMessagesByChatId(chatId));
+        User u = userMapper.getChatUserInfo(chatId, userId);
+        obj.setFirstName(u.getFirstName());
+        obj.setLastName(u.getLastName());
+        obj.setPhotoUrl(u.getPhotoUrl());
+        obj.setChatTitle(obj.getMessages().get(0).getChatTitle());
+        return obj;
     }
 
     public void createNewChat(int userId, int otherUserId) throws NewMessageException {

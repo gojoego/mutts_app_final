@@ -1,11 +1,11 @@
 package com.mutts_app.service;
 
 import com.mutts_app.repositories.MessageRepository;
-import com.mutts_app.repositories.pojos.Message;
-import com.mutts_app.repositories.pojos.User;
-import com.mutts_app.repositories.pojos.UserChats;
+import com.mutts_app.pojos.User;
+import com.mutts_app.pojos.UserChats;
 import com.mutts_app.repositories.UserRepository;
 import com.mutts_app.repositories.mappers.UserChatMapper;
+import com.mutts_app.repositories.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +23,9 @@ public class UserService {
     @Autowired
     MessageRepository messageRepo;
 
+    @Autowired
+    UserMapper userMapper;
+
 
     public List<User> getAllUsers(){
         return repo.findAll();
@@ -36,7 +39,7 @@ public class UserService {
         List<UserChats> chats = chatRepo.getChatsByUserId(userId);
 
         for (UserChats u : chats){
-            u.setPhotoUrl(repo.findByUserId(u.getSenderId()).getPhotoUrl());
+            u.setPhotoUrl(userMapper.getOtherUsersPhotoUrl(u.getChatId(), userId));
             u.setMessage(messageRepo.findFirst1ByChatIdOrderByIdDesc((int) u.getChatId()).getMessage());
         }
 

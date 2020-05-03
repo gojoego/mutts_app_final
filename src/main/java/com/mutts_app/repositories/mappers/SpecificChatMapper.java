@@ -1,7 +1,7 @@
 package com.mutts_app.repositories.mappers;
 
-import com.mutts_app.repositories.pojos.Message;
-import com.mutts_app.repositories.pojos.SpecificChat;
+import com.mutts_app.pojos.Message;
+import com.mutts_app.pojos.SpecificChat;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

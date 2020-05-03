@@ -1,6 +1,6 @@
 package com.mutts_app.controller;
 
-import com.mutts_app.repositories.pojos.User;
+import com.mutts_app.pojos.User;
 import com.mutts_app.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

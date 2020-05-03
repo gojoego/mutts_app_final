@@ -2,8 +2,8 @@ package com.mutts_app.service;
 
 import com.mutts_app.repositories.RoleRepository;
 import com.mutts_app.repositories.UserRepository;
-import com.mutts_app.repositories.pojos.Role;
-import com.mutts_app.repositories.pojos.User;
+import com.mutts_app.pojos.Role;
+import com.mutts_app.pojos.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

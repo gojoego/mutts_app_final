@@ -1,4 +1,4 @@
-package com.mutts_app.repositories.pojos;
+package com.mutts_app.pojos;
 
 
 

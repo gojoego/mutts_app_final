@@ -80,14 +80,14 @@
             <!-- 2 divs: image, phone number -->
             <!-- image -->
             <div id="recipient-image" class="img-wrap">
-                <img id="recipient" src="./hao_yun_xiang.jpg" alt="recipient">
+                <img id="recipient" th:src="@{images/defaulticon.svg}" alt="recipient">
             <!--    src: source or location where image located 
                     "." means "here"    
                     alt: what appears when image doesn't load   -->
             </div>
             <!-- phone number -->
             <div id="header-number">
-                <p> +62081319817055 </p>
+                <p> </p>
             </div>
                 
             <div id="header-main-icons">
@@ -144,7 +144,7 @@
                 </button>
                 <div class="form-wrap">
                     <form id="send-message" data-chat_id> 
-                        <input type="text" name="message" id="new-message" disabled>
+                        <input type="text" name="message" id="new-message" disabled placeholder="type message here">
                     </form>
                 </div>
                 <button class="svg-wrap">

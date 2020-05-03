@@ -23,7 +23,7 @@ const createChatBubble = (msg) => {
 
 function createChatBubbles(dataObj) {
     document.getElementById('chat-bubble-wrapper').innerHTML=" ";
-    let messageArr = dataObj.data;
+    let messageArr = dataObj.data.messages;
     messageArr.forEach(chat => createChatBubble(chat))
 }
 
@@ -32,13 +32,13 @@ function getUserChats() {
     fetch(baseUrl + "/" + userID + "/chats/")
         .then(response => response.json())
         .then(dataObj => {
-        console.log(dataObj)
         createPreviewBoxes(dataObj)})
 };
 
 getUserChats();
 
 function createPreviewBox(chat, append=true) {
+    console.log("here")
     console.log(chat);
     let previewBox = document.createElement('div');
     previewBox.classList.add('message-preview-box');
@@ -72,7 +72,6 @@ function createPreviewBox(chat, append=true) {
     let p2 = document.createElement('p');
     p2.setAttribute('data-chat_id', chat.chatId);
     p2.setAttribute('data-sender_id', chat.senderId)
-    console.log(chat);
     p2.innerHTML = chat.message;
     textWrap.appendChild(p1);
     textWrap.appendChild(p2);
@@ -112,16 +111,15 @@ function previewBoxClick(event) {
     let senderID = event.target.dataset.sender_id;
     
     document.getElementById('send-message').dataset.chatId = chatID;
-    console.log(baseUrl + "/" + userID + '/chats/' + senderID)
     fetch("chats/" + chatID)
     // fetch(baseUrl + "/" + userID + '/chats/' + senderID)
         .then(responsse => responsse.json())
         .then(dataObj => {
-            console.log(dataObj)
             createChatBubbles(dataObj)
         })
 
-    fetch(baseUrl + "/" + senderID)
+        fetch("chats/" + chatID)
+        // console.log(baseUrl + "/" + userID + '/chats/' + senderID)
         .then(response => response.json())
         .then(dataObj => {
             document.getElementById('recipient').setAttribute('src', dataObj.data.photoUrl);
@@ -145,7 +143,6 @@ sendMessage.addEventListener('submit', function(event){
 });
 
 function sendNewMessage(msgObj) {
-    console.log(msgObj)
     let postParams = {
        method: 'POST', // *GET, POST, PUT, DELETE, etc.
        headers: {
@@ -155,11 +152,9 @@ function sendNewMessage(msgObj) {
         },
        body: JSON.stringify(msgObj)
     };
-    console.log(`${baseUrl}/${userID}/message`, postParams)
     fetch(`${baseUrl}/${userID}/message`, postParams)
         .then(res => res.json())
         .then(res => {
-            console.log(res)
             return getUserChats();
         });
 }
@@ -173,7 +168,6 @@ function makeNewChatForm(e) {
     fetch(`${baseUrl}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             let usersArray = data.data;
             let frm = document.createElement('form');
             frm.id = `new-chat-frm`;
@@ -194,17 +188,14 @@ function makeNewChatForm(e) {
 function newChatSubmit(e){
     e.preventDefault()
     let options = document.getElementById('users-list').options;
-    console.log(document.getElementById('users-list').options)
-    console.log(e.target.elements)
+
     let val = e.target.elements["new-chat-user"].value
-    console.log(val)
     let newChatUserId;
     Array.from(options).forEach(option => {
         if (option.value === val) {
             newChatUserId = option.getAttribute('data-value');
         }
     })
-    console.log(newChatUserId)
     
     fetch(`${baseUrl} + "/" + senderID`)
     .then(response => response.json())

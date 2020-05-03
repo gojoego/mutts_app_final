@@ -1,9 +1,4 @@
-package com.mutts_app.repositories.pojos;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package com.mutts_app.pojos;
 
 public class SpecificChat {
 

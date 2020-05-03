@@ -1,6 +1,4 @@
-package com.mutts_app.repositories.pojos;
-
-import com.sun.javafx.beans.IDProperty;
+package com.mutts_app.pojos;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -57,4 +55,5 @@ public class Message {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
 }

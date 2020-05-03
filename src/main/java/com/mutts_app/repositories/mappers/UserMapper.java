@@ -1,11 +1,12 @@
 package com.mutts_app.repositories.mappers;
 
-import com.mutts_app.repositories.pojos.User;
+import com.mutts_app.pojos.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import javax.websocket.server.ServerEndpoint;
 import java.util.ArrayList;
 
 @Mapper
@@ -28,6 +29,20 @@ public interface UserMapper {
             "`last_name` = #{last_name}, `isActive` = #{isActive} WHERE (`id` = #{id})";
 
     String SELECT_BY_ID = "SELECT * from `whatsapp`.users where id =#{id}";
+
+    String CHAT_USER_INFO = "select u.firstName, u.lastName, u.photoUrl " +
+            "from user u " +
+            "join usersChats uc " +
+            "on u.userId = uc.userId " +
+            "where uc.chatId = #{param1} " +
+            "and uc.userId != #{param2}";
+
+    String GET_OTHER_USERS_PHOTO_URL = "select u.photoUrl " +
+            "from user u " +
+            "join usersChats uc " +
+            "on u.userId = uc.userId " +
+            "where uc.chatId = #{param1} " +
+            "and uc.userId != #{param2}";
 
     // bring queries to annotations and mybatis does the rest of the work
     // will also put them into array list as well
@@ -54,5 +69,11 @@ public interface UserMapper {
 
     @Select(GET_USER_FIRST_NAMES)
     public ArrayList<String> getUserFirstNames(int userId, int otherUserId);
+
+    @Select(CHAT_USER_INFO)
+    public User getChatUserInfo(int chatId, long userId);
+
+    @Select(GET_OTHER_USERS_PHOTO_URL)
+    public String getOtherUsersPhotoUrl(long chatId, long userId);
 
 }

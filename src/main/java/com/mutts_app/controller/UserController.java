@@ -3,10 +3,10 @@ package com.mutts_app.controller;
 
 import com.mutts_app.exceptions.NewMessageException;
 import com.mutts_app.response.CustomResponseObject;
-import com.mutts_app.repositories.pojos.Message;
-import com.mutts_app.repositories.pojos.SpecificChat;
-import com.mutts_app.repositories.pojos.User;
-import com.mutts_app.repositories.pojos.UserChats;
+import com.mutts_app.pojos.Message;
+import com.mutts_app.pojos.SpecificChat;
+import com.mutts_app.pojos.User;
+import com.mutts_app.pojos.UserChats;
 import com.mutts_app.service.MessageService;
 import com.mutts_app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
