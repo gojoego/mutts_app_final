@@ -1,4 +1,4 @@
-package com.mutts_app.repositories.mappers;
+package com.mutts_app.mappers;
 
 import com.mutts_app.pojos.User;
 import org.apache.ibatis.annotations.Insert;
@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import javax.websocket.server.ServerEndpoint;
 import java.util.ArrayList;
 
 @Mapper

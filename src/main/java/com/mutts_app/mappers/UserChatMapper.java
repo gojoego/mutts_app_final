@@ -1,4 +1,4 @@
-package com.mutts_app.repositories.mappers;
+package com.mutts_app.mappers;
 
 import com.mutts_app.pojos.Message;
 import com.mutts_app.pojos.UserChats;

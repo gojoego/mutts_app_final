@@ -4,8 +4,8 @@ import com.mutts_app.repositories.MessageRepository;
 import com.mutts_app.pojos.User;
 import com.mutts_app.pojos.UserChats;
 import com.mutts_app.repositories.UserRepository;
-import com.mutts_app.repositories.mappers.UserChatMapper;
-import com.mutts_app.repositories.mappers.UserMapper;
+import com.mutts_app.mappers.UserChatMapper;
+import com.mutts_app.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
