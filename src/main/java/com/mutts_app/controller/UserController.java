@@ -86,6 +86,9 @@ public class UserController {
         return obj;
     }
 
+//    @GetMapping("/all")
+//    public CustomResponseObject<List<User>> getAllUsers()
+
     // Post Request from mutts_app
     // controller receives request
     // hits the PostMapping endpoint for messages between 2 users
