@@ -86,6 +86,9 @@ public class UserController {
         return obj;
     }
 
+    // creating a chat id
+    //
+
 //    @GetMapping("/all")
 //    public CustomResponseObject<List<User>> getAllUsers()
 
@@ -100,5 +103,58 @@ public class UserController {
     // sync contact list
 
 }
+
+/*
+
+next feature: create new chat function
+
+front end
+-html: divs and graphics already created
+-css: styling already done
+-js:
+	-click event listener on chat icon
+	-window will appear from left
+	-new div created
+	-all contacts will be listed in alphabetical order
+	-utilize "/users" endpoint for this?
+	-new group button at the top
+	-says new chat at the top
+-java: endpoint for contacts ("/users")
+    -already have /users endpoint
+	-pulls from user table in workbench
+	-first name
+	-last name
+	-picture
+
+next next feature: create group
+-builds off last feature
+
+three dot icon - main chat
+-Contact info
+-Select messages
+-Mute notifications
+-Clear messages
+-Delete chat
+
+three dot icon - sidebar chat
+-New group
+-Profile
+-Archived
+-Starred
+-Settings
+-Log out
+
+attachment
+-photos and video
+-camera
+-documents
+-contact
+
+search
+-search messages
+-searches message history for specific words
+-indexing through database?
+
+*/
 
 

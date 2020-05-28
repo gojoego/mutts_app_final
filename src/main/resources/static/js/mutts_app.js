@@ -168,8 +168,9 @@ let newChatModalBody = document.getElementById('new-chat-modal-body');
 newChatBtn.addEventListener('click', makeNewChatForm);
 
 function makeNewChatForm(e) {
+    console.log("hi")
     newChatModalBody.innerHTML = "Loading Chat Form";
-    fetch(`${baseUrl}`)
+    fetch(`${baseUrl}`) // /users 
         .then(res => res.json())
         .then(data => {
             let usersArray = data.data;
@@ -192,7 +193,6 @@ function makeNewChatForm(e) {
 function newChatSubmit(e){
     e.preventDefault()
     let options = document.getElementById('users-list').options;
-
     let val = e.target.elements["new-chat-user"].value
     let newChatUserId;
     Array.from(options).forEach(option => {
@@ -200,14 +200,29 @@ function newChatSubmit(e){
             newChatUserId = option.getAttribute('data-value');
         }
     })
-    
-    fetch(`${baseUrl} + "/" + senderID`)
+    fetch(`${baseUrl}/${newChatUserId}`)
     .then(response => response.json())
-    
-   
-
-    // Write submit fetch here
+    // Close modal
+    $('#exampleModal').modal('hide')
 }
+
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  }
 
 // function newUser() {
 //     let postData = {
@@ -290,20 +305,4 @@ function newChatSubmit(e){
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-  
-  // Close the dropdown menu if the user clicks outside of it
-  window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
+
